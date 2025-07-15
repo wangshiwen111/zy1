@@ -117,3 +117,73 @@ for mt in ['lgbm', 'xgb']:
 # 保存实验结果
 with open("experiment_single.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=4)
+
+import pandas as pd
+import numpy as np
+import logging
+from src.model import train
+from src.evaluate import evaluate
+from src.config import DATA_PATH
+from src.data_loader import load_data
+from src.preprocess import full_pipeline
+
+# 配置日志
+logging.basicConfig(level=logging.INFO)
+
+# 加载数据并预处理
+df_raw = load_data(DATA_PATH)
+df = full_pipeline(df_raw)
+
+
+# 定义一个函数来执行样本分析
+def analyze_samples(model_type, df):
+    # 训练模型
+    logging.info(f"开始训练 {model_type.upper()} 模型...")
+    model, X_test, y_test = train(df, model_type=model_type, tune=False)
+
+    # 获取预测结果
+    y_pred = model.predict(X_test)
+
+    # 计算误差
+    errors = np.abs(y_pred - y_test)
+
+    # 创建一个 DataFrame 来保存测试集样本、预测结果和误差
+    test_results = pd.DataFrame({
+        'Features': X_test.values.tolist(),
+        'True_Price': y_test.tolist(),
+        'Predicted_Price': y_pred.tolist(),
+        'Error': errors.tolist()
+    })
+
+    # 选择正确预测样本（误差较小的样本）
+    correct_samples = test_results.nsmallest(5, 'Error')
+
+    # 选择错误预测样本（误差较大的样本）
+    incorrect_samples = test_results.nlargest(5, 'Error')
+
+    # 输出正确预测样本
+    logging.info(f"\n{model_type.upper()} 正确预测样本：")
+    logging.info(correct_samples)
+
+    # 输出错误预测样本
+    logging.info(f"\n{model_type.upper()} 错误预测样本：")
+    logging.info(incorrect_samples)
+
+    # 分析正确预测样本的特征
+    if not correct_samples.empty:
+        correct_sample_idx = correct_samples.index[0]
+        correct_sample_features = X_test.iloc[correct_sample_idx]
+        logging.info(f"\n{model_type.upper()} 正确预测样本的特征：")
+        logging.info(correct_sample_features)
+
+    # 分析错误预测样本的特征
+    if not incorrect_samples.empty:
+        incorrect_sample_idx = incorrect_samples.index[0]
+        incorrect_sample_features = X_test.iloc[incorrect_sample_idx]
+        logging.info(f"\n{model_type.upper()} 错误预测样本的特征：")
+        logging.info(incorrect_sample_features)
+
+
+# 对三个模型进行样本分析
+for model_type in ['rf', 'lgbm', 'xgb']:
+    analyze_samples(model_type, df)
