@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import warnings
 
 def create_target(df: pd.DataFrame) -> pd.DataFrame:
     """创建目标变量."""
@@ -12,13 +13,16 @@ def select_features(df: pd.DataFrame, keep: list) -> pd.DataFrame:
 
 def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
     """日期特征工程."""
-    df["Date"] = pd.to_datetime(df["Date"])
+    # 解决日期解析警告
+    df["Date"] = pd.to_datetime(df["Date"], errors='coerce')
     df["Month"] = df["Date"].dt.month
     df["Week"] = df["Date"].dt.isocalendar().week.astype("int64")
     return df
 
 def handle_missing(df: pd.DataFrame) -> pd.DataFrame:
     """缺失值填充."""
+    # 解决链式赋值警告
+    df = df.copy()
     df["Color"].fillna("UNKNOWN", inplace=True)
     df["Item Size"].fillna("MEDIUM", inplace=True)
     df["Unit of Sale"].fillna("BIN", inplace=True)

@@ -1,0 +1,209 @@
+[
+    {
+        "model_name": "RF",
+        "model_params": null,
+        "fea_encoding": "one-hot",
+        "0_fold_train_data": [
+            1102,
+            10
+        ],
+        "0_fold_test_data": [
+            551,
+            10
+        ],
+        "0_fold_train_performance": {
+            "rmse": "10.41",
+            "mae": "3.28",
+            "r2": "0.99"
+        },
+        "0_fold_test_performance": {
+            "rmse": "21.79",
+            "mae": "8.35",
+            "r2": "0.94"
+        },
+        "1_fold_train_data": [
+            1102,
+            10
+        ],
+        "1_fold_test_data": [
+            551,
+            10
+        ],
+        "1_fold_train_performance": {
+            "rmse": "8.39",
+            "mae": "3.24",
+            "r2": "0.99"
+        },
+        "1_fold_test_performance": {
+            "rmse": "20.03",
+            "mae": "7.95",
+            "r2": "0.94"
+        },
+        "2_fold_train_data": [
+            1102,
+            10
+        ],
+        "2_fold_test_data": [
+            551,
+            10
+        ],
+        "2_fold_train_performance": {
+            "rmse": "7.39",
+            "mae": "2.91",
+            "r2": "0.99"
+        },
+        "2_fold_test_performance": {
+            "rmse": "21.30",
+            "mae": "7.58",
+            "r2": "0.94"
+        },
+        "average_train_performance": {
+            "rmse": "8.73",
+            "mae": "3.15",
+            "r2": "0.99"
+        },
+        "average_test_performance": {
+            "rmse": "21.04",
+            "mae": "7.96",
+            "r2": "0.94"
+        }
+    },
+    {
+        "model_name": "LGBM",
+        "model_params": null,
+        "fea_encoding": "one-hot",
+        "0_fold_train_data": [
+            1102,
+            10
+        ],
+        "0_fold_test_data": [
+            551,
+            10
+        ],
+        "0_fold_train_performance": {
+            "rmse": "19.83",
+            "mae": "10.17",
+            "r2": "0.95"
+        },
+        "0_fold_test_performance": {
+            "rmse": "28.10",
+            "mae": "14.49",
+            "r2": "0.90"
+        },
+        "1_fold_train_data": [
+            1102,
+            10
+        ],
+        "1_fold_test_data": [
+            551,
+            10
+        ],
+        "1_fold_train_performance": {
+            "rmse": "19.95",
+            "mae": "10.62",
+            "r2": "0.95"
+        },
+        "1_fold_test_performance": {
+            "rmse": "23.98",
+            "mae": "13.23",
+            "r2": "0.92"
+        },
+        "2_fold_train_data": [
+            1102,
+            10
+        ],
+        "2_fold_test_data": [
+            551,
+            10
+        ],
+        "2_fold_train_performance": {
+            "rmse": "17.93",
+            "mae": "9.99",
+            "r2": "0.96"
+        },
+        "2_fold_test_performance": {
+            "rmse": "27.18",
+            "mae": "13.64",
+            "r2": "0.90"
+        },
+        "average_train_performance": {
+            "rmse": "19.24",
+            "mae": "10.26",
+            "r2": "0.95"
+        },
+        "average_test_performance": {
+            "rmse": "26.42",
+            "mae": "13.79",
+            "r2": "0.91"
+        }
+    },
+    {
+        "model_name": "XGB",
+        "model_params": null,
+        "fea_encoding": "one-hot",
+        "0_fold_train_data": [
+            1102,
+            10
+        ],
+        "0_fold_test_data": [
+            551,
+            10
+        ],
+        "0_fold_train_performance": {
+            "rmse": "8.12",
+            "mae": "3.02",
+            "r2": "0.99"
+        },
+        "0_fold_test_performance": {
+            "rmse": "21.19",
+            "mae": "8.77",
+            "r2": "0.94"
+        },
+        "1_fold_train_data": [
+            1102,
+            10
+        ],
+        "1_fold_test_data": [
+            551,
+            10
+        ],
+        "1_fold_train_performance": {
+            "rmse": "6.04",
+            "mae": "3.00",
+            "r2": "1.00"
+        },
+        "1_fold_test_performance": {
+            "rmse": "20.44",
+            "mae": "7.60",
+            "r2": "0.94"
+        },
+        "2_fold_train_data": [
+            1102,
+            10
+        ],
+        "2_fold_test_data": [
+            551,
+            10
+        ],
+        "2_fold_train_performance": {
+            "rmse": "5.98",
+            "mae": "2.99",
+            "r2": "1.00"
+        },
+        "2_fold_test_performance": {
+            "rmse": "21.71",
+            "mae": "8.37",
+            "r2": "0.94"
+        },
+        "average_train_performance": {
+            "rmse": "6.71",
+            "mae": "3.00",
+            "r2": "0.99"
+        },
+        "average_test_performance": {
+            "rmse": "21.11",
+            "mae": "8.25",
+            "r2": "0.94"
+        }
+    }
+]
