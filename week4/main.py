@@ -97,3 +97,23 @@ for mt in ['rf', 'lgbm', 'xgb']:
 
 with open("output.json", "w", encoding="utf-8") as f:
     json.dump(output, f, indent=4, ensure_ascii=False)
+
+# 单轮实验：LGBM 与 XGBoost
+import json
+from src.evaluate import evaluate
+from src.model import train
+
+results = []
+for mt in ['lgbm', 'xgb']:
+    print(f"【单轮实验】{mt.upper()} 训练开始...")
+    model, X_test, y_test = train(df, model_type=mt, tune=False)
+    metrics = evaluate(model, X_test, y_test)
+    results.append({
+        "model": mt.upper(),
+        "MSE": round(metrics["mse"], 3),
+        "R2": round(metrics["r2"], 3)
+    })
+
+# 保存实验结果
+with open("experiment_single.json", "w", encoding="utf-8") as f:
+    json.dump(results, f, ensure_ascii=False, indent=4)
